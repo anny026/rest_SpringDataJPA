@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Order</title>
+</head>
+<body>
+<h1 style="text-align: center;">Dear <span th:text="${user.username}"></span>!</h1>
+<br>
+<p style="text-align: center;">Total price: <span th:text="${session.list4}"></span></p>
+</body>
+</html>

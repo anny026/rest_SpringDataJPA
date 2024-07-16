@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Welcome To Online Shop</title>
+</head>
+<body>
+<h1 style="text-align: center;">Welcome To Online Shop</h1>
+<br>
+
+<form th:action="@{/user}" method="POST" style="text-align: center" th:object="${user}">
+  <input th:name="username" type="text" placeholder="Enter your name"/>
+  <br><br>
+  <input th:name="password" type="text" placeholder="Enter your password"/>
+  <br><br>
+  <input type="checkbox" th:name="agree" th:value="true"/>I am agree with the terms of service
+  <br><br>
+  <input type="submit" value="Enter"/>
+</form>
+</body>
+</html>

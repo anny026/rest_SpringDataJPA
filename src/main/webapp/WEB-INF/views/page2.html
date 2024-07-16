@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<h2 style="text-align: center;">Make your order</h2>
+
+<form th:action="@{/hello}" method="POST" style="text-align: center;">
+
+  <h1 style="text-align: center;">Hello, <span th:text="${user.username}"></span>!</h1>
+  <select name="item">
+        <option th:each="item : ${list}" th:value="${item.key}" th:text="${item.value}"></option>
+  </select>
+  <br>
+  <input type="submit" name="submitForm" value="addToCart" />
+  <input type="submit" name="submitForm" value="Submit" />
+</form>
+
+<div th:each="item : ${requestScope.list}" style="text-align: center;">
+  <p th:text="${item}"></p>
+</div>
+</body>
+</html>
