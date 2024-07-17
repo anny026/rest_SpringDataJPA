@@ -9,9 +9,9 @@ import shop.dto.OrderGoodDto;
 import shop.mapper.GoodMapper;
 import shop.mapper.OrderGoodMapper;
 import shop.mapper.OrderMapper;
-import shop.model.entity.Order;
 import shop.model.entity.OrderGood;
-import shop.model.repository.OrderGoodRepository;
+import shop.repository.OrderGoodRepository;
+import shop.service.OrderGoodService;
 
 import java.util.List;
 import java.util.Map;
@@ -20,18 +20,19 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class OrderGoodServiceImpl {
+public class OrderGoodServiceImpl implements OrderGoodService {
 
-    @Autowired
-    OrderGoodRepository orderGoodRepository;
+    private final OrderGoodRepository orderGoodRepository;
     private final OrderGoodMapper orderGoodMapper;
     private final OrderMapper orderMapper;
     private final GoodMapper goodMapper;
 
-    public OrderGoodServiceImpl(OrderGoodMapper orderGoodMapper, OrderMapper orderMapper, GoodMapper goodMapper, GoodMapper goodMapper1) {
+    @Autowired
+    public OrderGoodServiceImpl(OrderGoodMapper orderGoodMapper, OrderMapper orderMapper, GoodMapper goodMapper, OrderGoodRepository orderGoodRepository) {
         this.orderGoodMapper = orderGoodMapper;
         this.orderMapper = orderMapper;
-        this.goodMapper = goodMapper1;
+        this.orderGoodRepository = orderGoodRepository;
+        this.goodMapper = goodMapper;
     }
 
     public void addOrderGood(GoodDto good, OrderDto order) {
@@ -43,7 +44,7 @@ public class OrderGoodServiceImpl {
 
     public Map<Long, OrderGoodDto> findOrderedGoods(OrderDto order) {
         List<OrderGoodDto> goods = orderGoodMapper.toDto(orderGoodRepository
-                .getOrderedGoods( orderMapper.fromDto(order)));
+                .getOrderedGoods(orderMapper.fromDto(order)));
         Map<Long, OrderGoodDto> goodsMap = goods.stream()
                 .collect(Collectors.toMap(OrderGoodDto::getId, Function.identity()));
         return goodsMap;

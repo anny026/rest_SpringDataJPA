@@ -1,13 +1,7 @@
 package shop.controller;
 
-//import jakarta.servlet.ServletException;
-//import jakarta.servlet.http.HttpServletRequest;
-//import jakarta.servlet.http.HttpServletResponse;
-//import jakarta.servlet.http.HttpSession;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,18 +12,9 @@ import shop.dto.GoodDto;
 import shop.dto.OrderDto;
 import shop.dto.OrderGoodDto;
 import shop.dto.UserDto;
-import shop.model.entity.Good;
-import shop.model.entity.Order;
-import shop.model.entity.OrderGood;
-import shop.model.entity.User;
+import shop.service.GoodService;
+import shop.service.OrderGoodService;
 import shop.service.OrderService;
-import shop.service.impl.GoodServiceImpl;
-import shop.service.impl.OrderGoodServiceImpl;
-import shop.service.impl.OrderServiceImpl;
-import shop.service.impl.UserServiceImpl;
-
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.logging.Level;
@@ -41,17 +26,15 @@ import java.util.logging.Logger;
 public class ShopController {
 
     Logger logger = Logger.getLogger(ShopController.class.getName());
-    UserServiceImpl userService;
-    OrderServiceImpl orderService;
-    GoodServiceImpl goodService;
-    OrderGoodServiceImpl orderGoodService;
+
+    private final OrderService orderService;
+    private final GoodService goodService;
+    private final OrderGoodService orderGoodService;
 
     @Autowired
-    public ShopController(UserServiceImpl userService,
-                          OrderServiceImpl orderService,
-                          GoodServiceImpl goodService,
-                          OrderGoodServiceImpl orderGoodService) {
-        this.userService = userService;
+    public ShopController(OrderService orderService,
+                          GoodService goodService,
+                          OrderGoodService orderGoodService) {
         this.orderService = orderService;
         this.goodService = goodService;
         this.orderGoodService = orderGoodService;

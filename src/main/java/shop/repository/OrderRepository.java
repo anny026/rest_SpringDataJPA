@@ -1,10 +1,8 @@
-package shop.model.repository;
+package shop.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-import shop.model.entity.Good;
 import shop.model.entity.Order;
-import shop.model.entity.User;
 
 import java.util.Optional;
 

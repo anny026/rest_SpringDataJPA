@@ -9,18 +9,20 @@ import shop.mapper.OrderMapper;
 import shop.mapper.UserMapper;
 import shop.model.entity.Order;
 import shop.model.entity.User;
-import shop.model.repository.OrderRepository;
+import shop.repository.OrderRepository;
+import shop.service.OrderService;
 
 @Service
 @Transactional
-public class OrderServiceImpl {
-    @Autowired
-    OrderRepository orderRepository;
+public class OrderServiceImpl implements OrderService {
 
+    private final OrderRepository orderRepository;
     private final OrderMapper orderMapper;
     private final UserMapper userMapper;
 
-    public OrderServiceImpl(OrderMapper orderMapper, UserMapper userMapper) {
+    @Autowired
+    public OrderServiceImpl(OrderRepository orderRepository, OrderMapper orderMapper, UserMapper userMapper) {
+        this.orderRepository = orderRepository;
         this.orderMapper = orderMapper;
         this.userMapper = userMapper;
     }
