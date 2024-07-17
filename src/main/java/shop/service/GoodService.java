@@ -1,15 +1,17 @@
 package shop.service;
 
+import shop.dto.GoodDto;
 import shop.model.entity.Good;
 
 import java.util.Map;
 
 public interface GoodService {
-    public Map<Integer, Good> findAllGoods();
+    public Map<Long, GoodDto> findAllGoods();
+
     public Integer findPriceByKey(Integer key);
 
     public Long findIdByKey(Integer key);
 
-    public Good findIdBy(Long i);
+    public GoodDto findIdBy(Long i);
 }
 

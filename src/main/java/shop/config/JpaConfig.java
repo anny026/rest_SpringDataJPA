@@ -28,10 +28,10 @@ import java.util.logging.Logger;
 
 
 @Configuration
-@ComponentScan({"shop", "shop.model.entity", "shop.model.repository"})
+@ComponentScan({"shop", "shop.model.entity", "shop.repository"})
 @PropertySource("classpath:application.properties")
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages ="shop.model.repository")
+@EnableJpaRepositories(basePackages ="shop.repository")
 public class JpaConfig {
 
     Logger logger = Logger.getLogger(JpaConfig.class.getName());
